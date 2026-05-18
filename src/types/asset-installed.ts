@@ -5,11 +5,11 @@ export interface AssetInstalled {
 
   assetDeviceName: string;
 
-  departmentRowId: number;
+  departmentRowId?: number;
 
   departmentName: string;
 
-  positionTypeRowId: string;
+  positionTypeRowId?: string;
 
   positionTypeName: string;
 

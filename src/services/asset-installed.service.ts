@@ -5,9 +5,9 @@ import { ApiResponse } from "@/types/api";
 import { AssetInstalled } from "@/types/asset-installed";
 
 export interface AssetInstalledSearchRequest {
-  departmentRowId: number;
+  departmentRowId?: number;
 
-  positionTypeRowId: string;
+  positionTypeRowId?: string;
 }
 
 export const assetInstalledService = {
