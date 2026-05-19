@@ -22,33 +22,21 @@ type Props = {
   day: TransactionRangeDaySeries;
 };
 
-export default function TransactionDateChartCard({
-  device,
-  day,
-}: Props) {
-  const isRoom =
-    device.positionTypeRowId ===
-    "01";
+export default function TransactionDateChartCard({ device, day }: Props) {
+  const isRoom = device.positionTypeRowId === "01";
 
   /**
    * sorted temperature
    */
-  const sortedTemperature =
-    [
-      ...day.temperatureSeries,
-    ].sort(
-      (a, b) =>
-        a.minutes - b.minutes
-    );
+  const sortedTemperature = [...day.temperatureSeries].sort(
+    (a, b) => a.minutes - b.minutes,
+  );
 
   /**
    * sorted humidity
    */
-  const sortedHumidity = [
-    ...day.humiditySeries,
-  ].sort(
-    (a, b) =>
-      a.minutes - b.minutes
+  const sortedHumidity = [...day.humiditySeries].sort(
+    (a, b) => a.minutes - b.minutes,
   );
 
   return (
@@ -65,58 +53,56 @@ export default function TransactionDateChartCard({
       {/* HEADER */}
       <div className="flex items-start justify-between gap-4 mb-5">
         {/* LEFT */}
-        <div className="min-w-0">
-          <div className="text-base font-semibold text-foreground">
-            {
-              device.assetDeviceName
-            }
-          </div>
+        <div className="flex items-start justify-between gap-4 mb-5">
+              {/* LEFT */}
+              <div className="flex items-center flex-wrap gap-3">
+                <div className="text-base font-semibold text-foreground">
+                  {
+                    device.assetDeviceName
+                  }
+                </div>
 
-          <div
-            className="
-              text-sm
-              text-muted-foreground
-              mt-1
-              whitespace-nowrap
-              overflow-hidden
-              text-ellipsis
-            "
-          >
-            {
-              device.departmentName
-            }{" "}
-            •{" "}
-            {
-              device.installationArea
-            }
-          </div>
-        </div>
+                <div className="text-sm text-muted-foreground">
+                  {
+                    device.departmentName
+                  }{" "}
+                  •{" "}
+                  {
+                    device.installationArea
+                  }
+                </div>
+
+                <div
+                  className="
+                    rounded-full
+                    bg-sky-100
+                    text-sky-700
+                    text-xs
+                    font-medium
+                    px-3
+                    py-1
+                  "
+                >
+                  {
+                    device.threshold
+                      .description
+                      .normal
+                  }
+                </div>
+              </div>
+
+              {/* RIGHT */}
+              <div className="text-sm text-muted-foreground whitespace-nowrap">
+                {/*
+                    device.date
+                  */}
+              </div>
+            </div>
 
         {/* RIGHT */}
         <div className="text-sm text-muted-foreground whitespace-nowrap">
           {day.date}
         </div>
-      </div>
-
-      {/* Threshold */}
-      <div
-        className="
-          inline-flex
-          items-center
-          rounded-full
-          bg-sky-100
-          text-sky-700
-          text-xs
-          font-medium
-          px-3
-          py-1
-          mb-5
-        "
-      >
-        {
-          device.threshold
-            .description.normal
-        }
       </div>
 
       {/* CHARTS */}
@@ -132,18 +118,11 @@ export default function TransactionDateChartCard({
             p-4
           "
         >
-          <div className="text-sm font-medium mb-3">
-            Temperature
-          </div>
+          <div className="text-sm font-medium mb-3">Temperature</div>
 
-          <ResponsiveContainer
-            width="100%"
-            height={340}
-          >
+          <ResponsiveContainer width="100%" height={340}>
             <LineChart
-              data={
-                sortedTemperature
-              }
+              data={sortedTemperature}
               margin={{
                 top: 10,
                 right: 10,
@@ -151,10 +130,7 @@ export default function TransactionDateChartCard({
                 bottom: 20,
               }}
             >
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="#e5e7eb"
-              />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 
               <XAxis
                 dataKey="time"
@@ -172,14 +148,8 @@ export default function TransactionDateChartCard({
               <Tooltip />
 
               <ReferenceArea
-                y1={Number(
-                  device.threshold
-                    .temperature.low
-                )}
-                y2={Number(
-                  device.threshold
-                    .temperature.high
-                )}
+                y1={Number(device.threshold.temperature.low)}
+                y2={Number(device.threshold.temperature.high)}
                 fill="#e0f2fe"
                 fillOpacity={0.4}
               />
@@ -207,18 +177,11 @@ export default function TransactionDateChartCard({
               p-4
             "
           >
-            <div className="text-sm font-medium mb-3">
-              Humidity
-            </div>
+            <div className="text-sm font-medium mb-3">Humidity</div>
 
-            <ResponsiveContainer
-              width="100%"
-              height={340}
-            >
+            <ResponsiveContainer width="100%" height={340}>
               <LineChart
-                data={
-                  sortedHumidity
-                }
+                data={sortedHumidity}
                 margin={{
                   top: 10,
                   right: 10,
@@ -226,10 +189,7 @@ export default function TransactionDateChartCard({
                   bottom: 20,
                 }}
               >
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="#e5e7eb"
-                />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
 
                 <XAxis
                   dataKey="time"
@@ -247,14 +207,8 @@ export default function TransactionDateChartCard({
                 <Tooltip />
 
                 <ReferenceArea
-                  y1={Number(
-                    device.threshold
-                      .humidity.low
-                  )}
-                  y2={Number(
-                    device.threshold
-                      .humidity.high
-                  )}
+                  y1={Number(device.threshold.humidity.low)}
+                  y2={Number(device.threshold.humidity.high)}
                   fill="#ecfeff"
                   fillOpacity={0.4}
                 />

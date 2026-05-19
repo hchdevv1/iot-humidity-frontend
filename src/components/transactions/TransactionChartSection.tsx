@@ -1,17 +1,10 @@
 "use client";
 
-import {
-  forwardRef,
-} from "react";
-
+import {forwardRef} from "react";
 import TransactionDateChartCard from "./TransactionDateChartCard";
-
 import LoadingState from "@/components/common/LoadingState";
-
 import ErrorState from "@/components/common/ErrorState";
-
 import EmptyState from "@/components/common/EmptyState";
-
 import { TransactionRangeDevice } from "@/types/transaction-range";
 
 type Props = {
@@ -86,9 +79,7 @@ const TransactionChartSection =
                     className="pdf-chart-card"
                   >
                     <TransactionDateChartCard
-                      device={
-                        device
-                      }
+                      device={device}
                       day={day}
                     />
                   </div>

@@ -88,7 +88,7 @@ export default function TopFilterBar({
                   ? departments.find(
                       (d) => d.departmentRowId === departmentRowId,
                     )?.departmentName
-                  : "All Departments"}
+                  : "Select Department"}
 
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
@@ -123,7 +123,7 @@ export default function TopFilterBar({
                           !departmentRowId ? "opacity-100" : "opacity-0",
                         )}
                       />
-                      All Departments
+                      Select Departments
                     </CommandItem>
 
                     {departments.map((department) => (
@@ -177,7 +177,7 @@ export default function TopFilterBar({
                   ? positionTypes.find(
                       (p) => p.positionTypeRowId === positionTypeRowId,
                     )?.positionTypeName
-                  : "All Position Types"}
+                  : "Select Position"}
 
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
@@ -212,7 +212,7 @@ export default function TopFilterBar({
                             : "opacity-0",
                         )}
                       />
-                      All Position Types
+                      Select Position
                     </CommandItem>
 
                     {positionTypes.map((positionType, index) => (
